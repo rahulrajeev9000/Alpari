@@ -62,7 +62,7 @@ public class RatesDTO {
     }
 
     public double getSpecificRate(String rateCode){
-        return (double) getFullRatesFile().get(rateCode);
+        return (double) getAllRates().get(rateCode);
     }
 
     // keys

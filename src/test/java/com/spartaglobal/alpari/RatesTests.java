@@ -29,7 +29,7 @@ public class RatesTests {
     }
 
     @Test
-    public void numberOfCurrencies(){
+    public void testNumberOfCurrencies(){
         Assert.assertEquals(168, rates.getAllRates().size());
     }
 
@@ -42,7 +42,12 @@ public class RatesTests {
                  csv = true;
             }
         }
-        Assert.assertEquals(true, csv);
+        Assert.assertTrue(csv);
+    }
+
+    @Test
+    public void testGetAnyRate(){
+        Assert.assertEquals(4.234904, rates.getSpecificRate("AED"),0);
     }
 
 
