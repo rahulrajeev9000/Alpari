@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class RatesTests {
 
     private static RatesDTO rates;
@@ -23,16 +20,29 @@ public class RatesTests {
 
     @Test
     public void testTimestamp(){
-        Date date = new Date(rates.getTimestamp()*1000L);
-        SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = sdf.format(date);
-        Assert.assertEquals("2018-10-10",formattedDate);
-
+        Assert.assertEquals("2018-10-10",rates.convertEpochToDate());
     }
 
     @Test
     public void testBase(){
         Assert.assertEquals("EUR", rates.getBase());
+    }
+
+    @Test
+    public void numberOfCurrencies(){
+        Assert.assertEquals(168, rates.getAllRates().size());
+    }
+
+    @Test
+    public void testCVS(){
+        String[] ratesArray = rates.printCVSFormat().toString().split(",");
+        boolean csv = false;
+        for (int i =0; i<ratesArray.length; i++){
+            if (ratesArray[i].equals(" AED=4.234904")){
+                 csv = true;
+            }
+        }
+        Assert.assertEquals(true, csv);
     }
 
 
