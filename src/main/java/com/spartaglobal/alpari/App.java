@@ -9,6 +9,6 @@ public class App
     public static void main( String[] args )
     {
         RatesDTO rates = new RatesDTO("resources/rates.json");
-        System.out.println(rates.getSuccessValue());
+        System.out.println(rates.getSpecificRate("AED"));
     }
 }
